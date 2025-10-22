@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entscheiderin – Coming Soon</title>
+  <meta name="description" content="Werde zur Entscheiderin deines Lebens. Coaching & Begleitung für Veränderung – klar, leicht, wirksam.">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+<body>
+  <main class="container">
+    <h1>Werde zur <span>Entscheiderin</span> deines Lebens.</h1>
+    <p>Coaching & Begleitung für Veränderung – klar, leicht, wirksam.<br>
+      Die Plattform entsteht gerade. Trage dich ein und erfahre als Erste*r, wenn wir starten.</p>
+
+    <form id="signup" action="https://formspree.io/f/manpgdpv" method="POST" class="signup" novalidate>
+  <input
+    type="email"
+    name="email"
+    placeholder="E-Mail-Adresse"
+    autocomplete="email"
+    required
+    aria-label="E-Mail-Adresse"
+  />
+
+  <!-- DSGVO-Einwilligung -->
+  <label class="consent">
+    <input type="checkbox" name="consent" required />
+    Ich willige ein, dass meine E-Mail zur Kontaktaufnahme gespeichert und verarbeitet wird.
+    <a href="/datenschutz" target="_blank" rel="noopener">Mehr erfahren</a>.
+  </label>
+
+  <button type="submit">Benachrichtige mich</button>
+
+  <!-- Honeypot (unsichtbares Feld gegen Spam) -->
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" />
+</form>
+
+<p id="form-message" aria-live="polite"></p>
+
+<script>
+  const form = document.getElementById("signup");
+  const msg  = document.getElementById("form-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.textContent = "";
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        form.innerHTML = "<p>Danke! Du bekommst ein Update zum Launch ✨</p>";
+      } else {
+        msg.textContent = "Uups – das hat nicht geklappt. Bitte versuch’s später erneut.";
+      }
+    } catch (error) {
+      msg.textContent = "Netzwerkfehler – bist du online?";
+    }
+  });
+</script>
+
+
+    <footer>
+      <p>© <span id="year"></span> Entscheiderin</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
