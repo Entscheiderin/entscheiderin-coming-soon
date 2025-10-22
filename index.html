@@ -23,8 +23,6 @@
     required
     aria-label="E-Mail-Adresse"
   />
-
-  <!-- DSGVO-Einwilligung -->
   <label class="consent">
     <input type="checkbox" name="consent" required />
     Ich willige ein, dass meine E-Mail zur Kontaktaufnahme gespeichert und verarbeitet wird.
@@ -33,9 +31,40 @@
 
   <button type="submit">Benachrichtige mich</button>
 
-  <!-- Honeypot (unsichtbares Feld gegen Spam) -->
+  <!-- Honeypot gegen Bots -->
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" />
 </form>
+
+<p id="form-message" aria-live="polite"></p>
+
+<script>
+  const form = document.getElementById("signup");
+  const msg  = document.getElementById("form-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msg.textContent = "";
+
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        form.innerHTML = "<p>Danke! Du bekommst ein Update zum Launch ✨</p>";
+      } else {
+        msg.textContent = "Uups – das hat nicht geklappt. Bitte versuch’s später erneut.";
+      }
+    } catch {
+      msg.textContent = "Netzwerkfehler – bist du online?";
+    }
+  });
+</script>
 
 <p id="form-message" aria-live="polite"></p>
 
