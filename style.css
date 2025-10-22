@@ -1,24 +1,20 @@
 :root {
-  --bg: #0b0f0d;
   --accent: #22af6b;
-  --text: #ffffff;
-  --muted: rgba(255,255,255,0.7);
+  --text: #1c3c2c;
+  --muted: rgba(0,0,0,0.55);
 }
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: "Lato", "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(circle at top left, #1c3c2c, var(--bg));
-  color: var(--text);
+  background: linear-gradient(90deg, #e2f3cd 0%, #a9c9ff 100%);
+  color: #1c3c2c; /* Textfarbe dunkelgrün */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   text-align: center;
 }
-
 .container {
   max-width: 600px;
   padding: 2rem;
