@@ -81,23 +81,24 @@ footer {
   align-items: flex-start;
 }
 .consent a { color: var(--text); text-decoration: underline; }
-.brand-heading{
-  font-weight:300;              /* nicht fett */
-  text-transform:uppercase;
-  font-size:clamp(2rem, 6vw, 3.2rem);  /* responsive Größe */
+.brand-heading {
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 6vw, 3.2rem);
   margin: clamp(2rem, 6vw, 4rem) 0 1.25rem;
-  letter-spacing:0;             /* Basis: kein Spacing auf dem Container */
-  line-height:1.2;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: var(--text);       /* sorgt dafür, dass ENTSCHEIDER normal gefärbt ist */
 }
+
 .track {
-  letter-spacing: 0.097em;    /* entspricht Canva-Letterspacing 97 */
+  letter-spacing: 0.097em;
 }
 
 .accent {
-  color: var(--accent);
+  color: var(--accent);     /* nur das _IN wird grün */
   font-weight: 400;
 }
-
 .nopad {
   letter-spacing: 0;          /* sorgt dafür, dass der Punkt eng am Text steht */
 }
